@@ -18,6 +18,9 @@ jobs:
         with:
           flutter-version: '3.0.0'
           channel: 'stable'
+          cache: true
+          cache-key: flutter
+          cache-path: ${{ runner.tool_cache }}/flutter
       - run: flutter --version
       - run: flutter pub get
       - run: flutter test
