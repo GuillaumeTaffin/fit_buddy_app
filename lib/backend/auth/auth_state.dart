@@ -1,13 +1,19 @@
 part of 'auth_bloc.dart';
 
 @immutable
-abstract class AuthState {
-  get authStatus;
-}
-
-class AuthInitial extends AuthState {
+abstract class AuthState extends Equatable {
   @override
-  final authStatus = AuthStatus.anonymous;
+  List<Object> get props => [];
 }
 
-enum AuthStatus { anonymous, authenticated }
+@immutable
+class Anonymous extends AuthState {}
+
+@immutable
+class AuthLoading extends AuthState {}
+
+@immutable
+class Authenticated extends AuthState {}
+
+@immutable
+class AuthFailed extends AuthState {}

@@ -1,8 +1,11 @@
 import 'package:fit_buddy_app/backend/auth/auth_bloc.dart';
+import 'package:fit_buddy_app/backend/auth/auth_repository.dart';
 import 'package:fit_buddy_app/frontend/mobile/auth_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+
+import 'frontend/mobile/home_page.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -15,7 +18,7 @@ Future<void> main() async {
   runApp(
     MultiBlocProvider(
       providers: [
-        BlocProvider(create: (context) => AuthBloc()),
+        BlocProvider(create: (context) => AuthBloc(AuthRepositorySupabase())),
       ],
       child: const FitBuddyApp(),
     ),
@@ -32,7 +35,14 @@ class FitBuddyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: AuthPage(),
+      home: BlocBuilder<AuthBloc, AuthState>(
+        builder: (context, state) {
+          if (state is Authenticated) {
+            return const HomePage();
+          }
+          return AuthPage();
+        },
+      ),
       debugShowCheckedModeBanner: false,
     );
   }

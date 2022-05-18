@@ -20,10 +20,21 @@ class AuthPage extends StatelessWidget {
         children: [
           const Center(child: Title1(text: 'welcome to fit-buddy !')),
           OutlinedTextField(labelText: 'E-mail', controller: emailController),
-          OutlinedTextField(labelText: 'Password', controller: passwordController),
-          PlainButton(onPressed: () => submit(context), text: 'sign in')
+          OutlinedTextField(labelText: 'Password', controller: passwordController, obscureText: true),
+          submitButton()
         ].padItems(const EdgeInsets.all(8.0)),
       ),
+    );
+  }
+
+  BlocBuilder<AuthBloc, AuthState> submitButton() {
+    return BlocBuilder<AuthBloc, AuthState>(
+      builder: (context, state) {
+        if (state is AuthLoading) {
+          return const CircularProgressIndicator();
+        }
+        return PlainButton(onPressed: () => submit(context), text: 'sign in');
+      },
     );
   }
 
