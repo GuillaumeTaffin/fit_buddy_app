@@ -2,7 +2,7 @@ import 'package:fit_buddy_app/frontend/components/helpers.dart';
 import 'package:fit_buddy_app/frontend/components/pages.dart';
 import 'package:fit_buddy_app/frontend/components/texts.dart';
 import 'package:fit_buddy_app/frontend/mobile/settings_page.dart';
-import 'package:fit_buddy_app/frontend/mobile/trainings_page.dart';
+import 'package:fit_buddy_app/frontend/mobile/workouts_page.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
@@ -23,8 +23,8 @@ class HomePage extends StatelessWidget {
             children: [
               HomePageItem(
                 image: 'images/healthy-lifestyle-border.png',
-                label: 'trainings',
-                goTo: () => goTo(context, const TrainingsPage()),
+                label: 'workouts',
+                goTo: () => goTo(context, const WorkoutsPage()),
               ),
               HomePageItem(
                 image: 'images/settings.png',

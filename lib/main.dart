@@ -1,5 +1,7 @@
 import 'package:fit_buddy_app/backend/auth/auth_bloc.dart';
 import 'package:fit_buddy_app/backend/auth/auth_repository.dart';
+import 'package:fit_buddy_app/backend/workouts/workouts_bloc.dart';
+import 'package:fit_buddy_app/backend/workouts/workouts_repository.dart';
 import 'package:fit_buddy_app/frontend/mobile/auth_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -19,6 +21,7 @@ Future<void> main() async {
     MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) => AuthBloc(AuthRepositorySupabase())),
+        BlocProvider(create: (context) => WorkoutsBloc(WorkoutsRepositorySupabase())),
       ],
       child: const FitBuddyApp(),
     ),
