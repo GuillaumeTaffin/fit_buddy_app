@@ -10,6 +10,9 @@ WorkoutDto _$WorkoutDtoFromJson(Map<String, dynamic> json) => WorkoutDto(
       id: json['id'] as int,
       title: json['title'] as String,
       trainedAt: DateTime.parse(json['training_at'] as String),
+      exercises: (json['exercises'] as List<dynamic>)
+          .map((e) => ExerciseDto.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$WorkoutDtoToJson(WorkoutDto instance) =>
@@ -17,6 +20,7 @@ Map<String, dynamic> _$WorkoutDtoToJson(WorkoutDto instance) =>
       'id': instance.id,
       'title': instance.title,
       'training_at': instance.trainedAt.toIso8601String(),
+      'exercises': instance.exercises,
     };
 
 ExerciseDto _$ExerciseDtoFromJson(Map<String, dynamic> json) => ExerciseDto(

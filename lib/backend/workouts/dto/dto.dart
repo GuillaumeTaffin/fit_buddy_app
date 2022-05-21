@@ -14,12 +14,16 @@ class WorkoutDto {
   @JsonKey(name: 'training_at')
   final DateTime trainedAt;
 
-  WorkoutDto({required this.id, required this.title, required this.trainedAt});
+  @JsonKey(name: 'exercises')
+  final List<ExerciseDto> exercises;
+
+  WorkoutDto({required this.id, required this.title, required this.trainedAt, required this.exercises});
 
   WorkoutDto.fromEntity(Workout workout)
       : id = workout.id,
         title = workout.title,
-        trainedAt = workout.trainedAt;
+        trainedAt = workout.trainedAt,
+        exercises = [];
 
   factory WorkoutDto.fromJson(Map<String, dynamic> json) => _$WorkoutDtoFromJson(json);
 
