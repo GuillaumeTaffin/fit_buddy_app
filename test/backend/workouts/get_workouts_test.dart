@@ -13,8 +13,43 @@ void main() {
   });
 
   var workouts = [
-    Workout(0, 'w1', DateTime.now().subtract(const Duration(days: 2))),
-    Workout(1, 'w2', DateTime.now().subtract(const Duration(days: 1))),
+    Workout(
+      0,
+      'w1',
+      DateTime.now().subtract(const Duration(days: 2)),
+      const [
+        Exercise(
+          0,
+          'e1',
+          [
+            Set(3, 55.5, 10, Duration(seconds: 190)),
+            Set(5, 90, 15, Duration(seconds: 120)),
+            Set(5, 90, 15, Duration(seconds: 120)),
+          ],
+        ),
+        Exercise(
+          3,
+          'e2',
+          [
+            Set(4, 14.25, 15, Duration(seconds: 190)),
+          ],
+        ),
+      ],
+    ),
+    Workout(
+      1,
+      'w2',
+      DateTime.now().subtract(const Duration(days: 1)),
+      const [
+        Exercise(
+          5,
+          'e5',
+          [
+            Set(2, 40, 6, Duration(seconds: 90)),
+          ],
+        )
+      ],
+    ),
   ];
 
   group('Load workouts from the repository', () {

@@ -19,18 +19,26 @@ class WorkoutDto {
 
   WorkoutDto({required this.id, required this.title, required this.trainedAt, required this.exercises});
 
-  WorkoutDto.fromEntity(Workout workout)
-      : id = workout.id,
-        title = workout.title,
-        trainedAt = workout.trainedAt,
-        exercises = [];
-
   factory WorkoutDto.fromJson(Map<String, dynamic> json) => _$WorkoutDtoFromJson(json);
 
   Map<String, dynamic> toJson() => _$WorkoutDtoToJson(this);
 
+  factory WorkoutDto.fromEntity(Workout workout) {
+    return WorkoutDto(
+      id: workout.id,
+      title: workout.title,
+      trainedAt: workout.trainedAt,
+      exercises: workout.exercises.map(ExerciseDto.fromEntity).toList(),
+    );
+  }
+
   Workout toEntity() {
-    return Workout(id, title, trainedAt);
+    return Workout(
+      id,
+      title,
+      trainedAt,
+      exercises.map((e) => e.toEntity()).toList(),
+    );
   }
 }
 
@@ -50,6 +58,22 @@ class ExerciseDto {
   factory ExerciseDto.fromJson(Map<String, dynamic> json) => _$ExerciseDtoFromJson(json);
 
   Map<String, dynamic> toJson() => _$ExerciseDtoToJson(this);
+
+  factory ExerciseDto.fromEntity(Exercise exercise) {
+    return ExerciseDto(
+      id: exercise.id,
+      title: exercise.title,
+      sets: exercise.sets.map(SetDto.fromEntity).toList(),
+    );
+  }
+
+  Exercise toEntity() {
+    return Exercise(
+      id,
+      title,
+      sets.map((e) => e.toEntity()).toList(),
+    );
+  }
 }
 
 @JsonSerializable()
@@ -71,4 +95,17 @@ class SetDto {
   factory SetDto.fromJson(Map<String, dynamic> json) => _$SetDtoFromJson(json);
 
   Map<String, dynamic> toJson() => _$SetDtoToJson(this);
+
+  factory SetDto.fromEntity(Set set) {
+    return SetDto(
+      id: set.id,
+      weight: set.weight,
+      numberOfRepetitions: set.numberOfRepetitions,
+      restInSeconds: set.restTime.inSeconds,
+    );
+  }
+
+  Set toEntity() {
+    return Set(id, weight, numberOfRepetitions, Duration(seconds: restInSeconds));
+  }
 }
