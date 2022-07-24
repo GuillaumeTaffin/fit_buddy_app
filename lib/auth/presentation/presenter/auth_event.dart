@@ -1,4 +1,4 @@
-part of 'auth_bloc.dart';
+part of 'auth_presenter.dart';
 
 @immutable
 abstract class AuthEvent {}
@@ -17,7 +17,8 @@ class SignInEvent extends AuthEvent {
 
   @override
   bool operator ==(Object other) =>
-      identical(this, other) || (other is SignInEvent && runtimeType == other.runtimeType && email == other.email && password == other.password);
+      identical(this, other) ||
+      (other is SignInEvent && runtimeType == other.runtimeType && email == other.email && password == other.password);
 
   @override
   int get hashCode => email.hashCode ^ password.hashCode;

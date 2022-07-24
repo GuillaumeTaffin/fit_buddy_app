@@ -64,7 +64,7 @@ class WorkoutItem extends StatelessWidget {
       trailing: IconButton(
         onPressed: () =>
             Navigator.of(context).push(MaterialPageRoute(builder: (context) => WorkoutsDataPage(workout: workout))),
-        icon: const Icon(Icons.table_view),
+        icon: const Icon(Icons.dataset_outlined),
       ),
     );
   }

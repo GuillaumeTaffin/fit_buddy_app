@@ -41,31 +41,11 @@ class ExerciseReadOnlyData extends StatelessWidget {
                 ),
           ),
           DataTable(
-            columns: const [
-              DataColumn(
-                label: Text(
-                  'Set',
-                  style: TextStyle(fontStyle: FontStyle.italic),
-                ),
-              ),
-              DataColumn(
-                label: Text(
-                  'Weight',
-                  style: TextStyle(fontStyle: FontStyle.italic),
-                ),
-              ),
-              DataColumn(
-                label: Text(
-                  'Reps',
-                  style: TextStyle(fontStyle: FontStyle.italic),
-                ),
-              ),
-              DataColumn(
-                label: Text(
-                  'Rest',
-                  style: TextStyle(fontStyle: FontStyle.italic),
-                ),
-              ),
+            columns: [
+              buildColumnHeader('Set'),
+              buildColumnHeader('Weight'),
+              buildColumnHeader('Reps'),
+              buildColumnHeader('Rest'),
             ],
             rows: exercise.sets
                 .asMap()
@@ -86,6 +66,15 @@ class ExerciseReadOnlyData extends StatelessWidget {
                 .toList(),
           )
         ].padItems(const EdgeInsets.symmetric(vertical: 8.0)),
+      ),
+    );
+  }
+
+  DataColumn buildColumnHeader(String label) {
+    return DataColumn(
+      label: Text(
+        label,
+        style: const TextStyle(fontStyle: FontStyle.italic),
       ),
     );
   }

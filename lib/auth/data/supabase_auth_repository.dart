@@ -1,15 +1,6 @@
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-abstract class AuthRepository {
-  bool userSignedIn();
-
-  Future<AuthStatus> signIn(String email, String password);
-}
-
-enum AuthStatus {
-  success,
-  failure;
-}
+import '../domain/auth_repository.dart';
 
 class AuthRepositorySupabase extends AuthRepository {
   @override
